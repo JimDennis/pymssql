@@ -13,13 +13,13 @@ Quickstart usage of various features
     conn = _mssql.connect(server='SQL01', user='user', password='password', \
         database='mydatabase')
     conn.execute_non_query('CREATE TABLE persons(id INT, name VARCHAR(100))')
-    conn.execute_non_query("INSERT INTO persons VALUES(1, 'John Doe')")
-    conn.execute_non_query("INSERT INTO persons VALUES(2, 'Jane Doe')")
+    conn.execute_non_query("INSERT INTO persons (id, name) VALUES(1, 'John Doe')")
+    conn.execute_non_query("INSERT INTO persons (id, name) VALUES(2, 'Jane Doe')")
 
 ::
 
     # how to fetch rows from a table
-    conn.execute_query('SELECT * FROM persons WHERE salesrep=%s', 'John Doe')
+    conn.execute_query('SELECT id, name FROM persons WHERE salesrep=%s', 'John Doe')
     for row in conn:
         print "ID=%d, Name=%s" % (row['id'], row['name'])
 
